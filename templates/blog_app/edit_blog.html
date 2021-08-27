@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+<!-- sahdoiasdioj -->
+{% load crispy_forms_tags %}
+<!-- Title Change -->
+{% block title %} Edit {% endblock %}
+<!-- Content Change -->
+{% block intro %}{% endblock %}
+<!-- sadas -->
+{% block content %} {% if blog.user == user %}
+<form method="POST">
+  {{ form|crispy }} {% csrf_token %}
+  <button type="submit" class="btn btn-success btn-md">Update</button>
+</form>
+{% else %} {% endif %} {% endblock %}

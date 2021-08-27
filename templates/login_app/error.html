@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+<!-- sadadas -->
+{% block title %} error{% endblock %} {% block intro %}{% endblock %}
+<!-- dasdsadasd -->
+{% block content %} {% if success is False %}
+
+<h1 class="alert alert-danger">Wrong Username or Email.</h1>
+<p class="lead alert alert-danger">Please Try Again</p>
+
+{% elif active is False %}
+<h1 class="alert alert-danger">Sorry,The User is not Active</h1>
+<p class="lead">
+  Go to
+  <a href="{% url 'blog_app:blog_list' %}" class="text-primary"></a> HomePage
+</p>
+{% else %} {% for msg in messages %}
+<h1 class="alert alert-danger">{{ msg }}</h1>
+{% endfor %}
+<p class="lead">
+  Go to
+  <a href="{% url 'blog_app:blog_list' %}" class="text-primary">HomePage</a>
+</p>
+{% endif %} {% endblock %}

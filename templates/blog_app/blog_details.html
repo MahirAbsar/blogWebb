@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+<!-- loading crispy -->
+{% load crispy_forms_tags %}
+<!-- saasdasd -->
+{% block intro %}{% endblock %}
+<!-- Title Changing -->
+{% block title %} {{ blog.blog_title }} {% endblock %}
+<!-- Changing Content -->
+{% block content %}
+<!--for single blog-->
+<div class="row">
+  <div class="col sm-6">
+    <h2 id="topic">{{ blog.blog_title }}</h2>
+    <h4>Posted By : <a id="users" href="#">@{{ blog.user }}</a></h4>
+    <h6><i>{{ blog.publish_date }}</i></h6>
+    <h6><i>{{ blog.update_date }}</i></h6>
+    <h6>
+      {{ blog.blog_like.count }} Likes | {{ blog.blog_comment.count }} Comments
+    </h6>
+  </div>
+  <div class="col sm-6">
+    <img src="/media/{{ blog.blog_image }}" alt="" class="img-fluid" />
+  </div>
+</div>
+<h2 class="fs-2">{{ blog.blog_content|linebreaks }}</h2>
+<br />
+<div>
+  {% if not liked %}
+  <a href="{% url 'blog_app:like' pk=blog.pk %}">
+    <i class="fa fa-thumbs-o-up fa-2x" aria-hidden="true"></i>
+  </a>
+  {% else %}
+  <a href="{% url 'blog_app:unlike' pk=blog.pk %}">
+    <i class="fa fa-thumbs-o-down fa-2x" aria-hidden="true"></i>
+  </a>
+  {% endif %}
+</div>
+<br />
+<div class="row">
+  <div class="col-sm-6">
+    <h3>Comments:</h3>
+    <hr />
+    {% for comments in blog.blog_comment.all %}
+    <h5><a href="#">@{{comments.user}}</a> {{ comments.comment }}</h5>
+
+    <h6>{{ comments.comment_date }}</h6>
+    {% endfor %}
+  </div>
+  <div class="col-sm-6">
+    <form method="POST">
+      {{ form|crispy }} {% csrf_token %}
+      <button type="submit" class="btn btn-success btn-sm">Submit</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+<!-- sadasda -->
+{% load crispy_forms_tags %}
+<!-- asdasd -->
+{% block title %} Create A User {% endblock %} {% block intro %}{% endblock %}
+<!-- sadsaasd -->
+{% block content %} {% if registered %}
+<div class="alert alert-success">
+  Congratulation!!! Registration Succesfull.
+  <a href="{% url 'login_app:signin' %}" class="alert-link">Login here</a>
+</div>
+{% else %}
+
+<div style="width: 50vw" class="m-auto mt-4">
+  <form method="POST">
+    {{ form|crispy }} {% csrf_token %}
+    <input
+      type="submit"
+      name="submit"
+      value="Register"
+      class="btn btn-outline-primary mt-3"
+    />
+  </form>
+</div>
+
+<div class="alert-info my-2 w-50 m-auto p-3">
+  Already Registered?
+  <a class="alert-link" href="{% url 'login_app:signin' %}">Login here</a>
+</div>
+
+{% endif %} {% endblock %}

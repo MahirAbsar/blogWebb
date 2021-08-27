@@ -1,0 +1,166 @@
+<!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link" href="{% url 'home' %}">
+        <h3>SHARE!</h3>
+      </a>
+    </li>
+    {% if user.is_authenticated %}
+    <div class="nav-item dropdown">
+      <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        id="navbardrop"
+        data-toggle="dropdown"
+      >
+        @{{user.username}}
+      </a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item" href="{% url 'blog_app:write' %}"
+          >Write Blog</a
+        >
+        <a class="dropdown-item" href="{% url 'blog_app:my_blogs'  %} "
+          >My Blogs</a
+        >
+        <a class="dropdown-item" href="{% url 'login_app:profile' %}"
+          >Your Profile</a
+        >
+        <hr />
+        <a class="dropdown-item" href="{% url 'login_app:signout' %}">Logout</a>
+      </div>
+    </div>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login_app:signup' %}">Sign Up</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login_app:signin' %}">Login</a>
+    </li>
+    {% endif %}
+  </ul>
+</nav> -->
+
+<nav
+  class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top"
+  style="position: relative"
+>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'home' %}"
+      ><img src="/media/pen.png" width="60px" alt="Something"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if user.is_authenticated %}
+        <li class="nav-item btn btn-outline-info dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            {{ user.username }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="dropdown-item" href="{% url 'blog_app:write' %}"
+                >Write Blog</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'blog_app:my_blogs'  %}"
+                >My Blogs</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'login_app:profile' %}"
+                >My Profile</a
+              >
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" href="{% url 'login_app:signout' %}"
+                >Logout</a
+              >
+            </li>
+          </ul>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            href="{% url 'login_app:signup' %}"
+            >Sign Up</a
+          >
+        </li>
+        <li>
+        <a class="nav-item link-btn">
+          <a
+            class="nav-link"
+            href="{% url 'login_app:signin' %}"
+            >Login</a
+          >
+        </a>
+          </li>
+        <li>
+          <div class="container" >
+          <button id="about-btns" type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal"> About
+          </button>
+          <!-- The Modal -->
+  <div class="modal " id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Welcome Nsuers!!!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          <p>
+            Bored of posting course and faculty reviews on Facebook ? Why not
+            talk about things that fascinates you!! <br>
+
+            This is a place where you can share your thoughts with your fellow
+            NSUers by writing about things that you are interested in, also
+            recieve feedback from them. Why not learn new things from here?
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+        </li>
+
+        {% endif %}
+      </ul>
+      <form method="GET" action="{% url 'blog_app:search' %}" class="d-flex">
+        {% csrf_token %}
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search"
+          name="query"
+        />
+        <button class="btn btn-outline-info" type="submit">Search</button>
+      </form>
+      <a href="/admin" class="btn btn-outline-danger ms-2">Admin Panel</a>
+    </div>
+  </div>
+</nav>

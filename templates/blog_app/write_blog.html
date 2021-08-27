@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+<!-- Loading Crispy Tag  -->
+{% load crispy_forms_tags %}
+<!-- Changing Title -->
+{% block title %} Write Blogs {% endblock %}
+<!-- sadsad -->
+{% block intro %}{% endblock %}
+<!-- changing content -->
+{% block content %}
+
+<form method="POST" enctype="multipart/form-data">
+  {{ form|crispy }}
+  <button class="btn btn-success">Publish</button>
+  {% csrf_token %}
+</form>
+
+{% endblock %}

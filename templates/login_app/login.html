@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+<!-- saasdasd -->
+{% load crispy_forms_tags %}
+<!-- sadasd -->
+{% block intro %}{% endblock %}
+{% block title %} Sign Up {% endblock %}
+<!-- sadasd -->
+{% block content %}
+
+{% for msg in messages %}
+<div class="alert alert-primary alert-dismissible" role="alert" id="liveAlert">
+  <strong>Congrats!</strong> {{ msg }}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+
+<div style="width: 50vw" class="m-auto mt-4">
+  <form method="POST">
+    {% csrf_token %}
+    <!-- {{ form|crispy }} {% csrf_token %}
+    <input
+      type="submit"
+      name="submit"
+      value="Sign In"
+      class="btn btn-primary btn-md"
+    />
+  </form> -->
+  {% for field in form %}
+        <div class="form__field">
+          <label class='form-labels' for="formInput#text">{{ field.label }}</label>
+          {{ field }}
+        </div>
+  {% endfor %}
+
+  <input type="submit" class="mt-2 btn btn-outline-primary" value="Sign in">
+
+</div>
+
+<div class="alert alert-warning w-50 m-auto p-3">
+  Haven't Registerd Yet?
+  <a href="{% url 'login_app:signup' %}" class="alert-link">Sign Up First</a>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+<!-- sdasdasd -->
+{% load crispy_forms_tags %}
+<!-- sadada -->
+{% block title %} Change Profile {% endblock %} {% block intro %}{% endblock %}
+<!-- Main Content -->
+{% block content %}
+
+<form method="POST">
+  {{ form|crispy }}
+  <!--sdasdsa  -->
+  {% csrf_token %}
+  <input type="submit" value="Update" class="btn btn-primary btn-md" />
+</form>
+
+{% endblock %}

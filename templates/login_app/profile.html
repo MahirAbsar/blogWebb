@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% block title %} Profile {% endblock %}
+<!-- saasdsa -->
+{% block intro %}{% endblock %}
+<!-- sadasdasdas -->
+{% block content %}
+<h2>Your Profile:</h2>
+<hr />
+<p>Name: {{ user.first_name }} {{ user.last_name }}</p>
+<p>Username: {{ user.username }}</p>
+{% if user.user_profile %}
+<img
+  src="/media/{{ user.user_profile.profile_pic }}"
+  alt="myImage"
+  class="rounded-circle"
+  width="200px"
+/>
+<a href="{% url 'login_app:change_pic' %}" class="btn btn-primary btn-sm"
+  >Change Profile Pic</a
+>
+{% else %}
+<img
+  src="/media/profile_pics/default.jpeg"
+  alt="defaultImage"
+  class="rounded-circle"
+  width="200px"
+/>
+<br />
+<br />
+<a href="{% url 'login_app:add_pic' %}" class="btn btn-primary btn-sm"
+  >Add Profile Pic</a
+>
+{% endif %}
+<p>Email: {{ user.email }}</p>
+<a href="{% url 'login_app:change_info' %}" class="btn btn-warning btn-md"
+  >Change Info</a
+>
+
+{% endblock %}

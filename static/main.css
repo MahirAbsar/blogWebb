@@ -1,0 +1,21 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Rampart+One&display=swap');
+
+
+.custom-title
+{
+    position:relative;
+    right: 600px;
+    font-family: 'Rampart One', cursive;
+}
+
+.form-labels
+{
+    font-size:2rem;
+    letter-spacing:0.5rem;
+}
+
+input[type=text]
+{
+    padding: 10px;
+}
