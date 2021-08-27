@@ -100,7 +100,7 @@ def pass_change(request):
         form = PasswordChangeForm(current_user, request.POST)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('login_app: '))
+            return HttpResponseRedirect(reverse('login_app:signin'))
     return render(request, 'login_app/pass_change.html', context={'form': form})
 
 
